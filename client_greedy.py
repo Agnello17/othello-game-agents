@@ -61,7 +61,7 @@ def get_capture_details(player, board, row, column):
                     cur_row += row_delta
                     cur_column += column_delta
 
-            # updates capture state and breaks if can capture
+            # updates capture state and adds to total captured
             if friendly_found:
                 capture = True
                 total_captured += cur_capped
@@ -109,7 +109,7 @@ def get_move(player, board):
     # finds move that captures the most pieces
     most_capped = max(capped_in_move)
 
-    # finds move that has captures most and chooses between the best move randomly if many have the most captured
+    # finds move that captures most and chooses between the best move randomly if many have the most captured
     if capped_in_move.count(most_capped) > 1:
         best_indices = [i for i, num_capped in enumerate(capped_in_move) if num_capped == most_capped]
         best_move = legal_moves[random.choice(best_indices)]
