@@ -1,5 +1,6 @@
 # othello-game-agents
 Code for Minimax and Greedy game agents to play Othello.
+Developed with Python 3.11
 
 # Agent Overview
 This project contains two different agents to play Othello. The first agent is the Greedy agent, and the second is the Minimax agent. 
