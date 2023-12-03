@@ -71,18 +71,18 @@ def minimax_score(player, board, cur_depth, player_turn):
 
         # passes if no legal moves and makes random move otherwise
         if len(legal_moves) == 0:
-            rang_score = minimax_score(player, board, cur_depth - 1, True)
+            rand_score = minimax_score(player, board, cur_depth - 1, True)
         else:
             random_move = random.choice(legal_moves)
             new_board = play_move(opponent, board, random_move)
-            rang_score = minimax_score(player, new_board, cur_depth - 1, True)
-        return rang_score
+            rand_score = minimax_score(player, new_board, cur_depth - 1, True)
+        return rand_score
 
 
 # makes the provided legal move on the board and changes board as needed
 def play_move(cur_player, board, move):
 
-    # copies board and makes move getting possible capture directions
+    # copies board, makes move, gets possible capture directions
     new_board = copy.deepcopy(board)
     cur_opponent = cur_player + (cur_player % 2) * 2 - 1  # converts 1 -> 2 and 2 -> 1
     new_board[move[0]][move[1]] = cur_player
@@ -92,13 +92,12 @@ def play_move(cur_player, board, move):
     for row_delta, column_delta in capture_dirs:
         flip_row = move[0] + row_delta
         flip_col = move[1] + column_delta
-
         while new_board[flip_row][flip_col] == cur_opponent:
             new_board[flip_row][flip_col] = cur_player
             flip_row += row_delta
             flip_col += column_delta
 
-    # returns new board state after move and any possible captures
+    # returns new board state after move
     return new_board
 
 
